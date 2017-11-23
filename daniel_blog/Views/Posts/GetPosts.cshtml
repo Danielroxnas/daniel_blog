@@ -8,14 +8,14 @@
             @Html.DisplayNameFor(model => model.Title)
         </div>
         @foreach (var item in Model) {
-                <a href="@Url.Action("GetPost", "Post", new { id = item.PostId})">
+                <a href="@Url.Action("GetPost", "Posts", new { id = item.PostId})">
             <div style="border:solid 1px red;">
-                
-                    @*@Html.ActionLink("GetPost","GetPost", "Post", new { id = item.PostId});*@
                 <p style="font-weight:bold; text-align:center;">
                     @Html.DisplayFor(modelItem => item.Title)
                 </p>
-                <p style="width: 100%;text-overflow: ellipsis; overflow: hidden;white-space: nowrap;">@Html.DisplayFor(modelItem => item.Content)</p>
+                <p style="width: 100%;text-overflow: ellipsis; overflow: hidden;white-space: nowrap;">
+                    @Html.DisplayFor(modelItem => item.Content)
+                </p>
             </div>
             </a> 
             }
