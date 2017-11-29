@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "View";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "Posts", FormMethod.Post))
+{
+    <input type="text"  name="title"/>
+    <input type="text" name="content" />
+    <input type="submit" value="create" />
+}

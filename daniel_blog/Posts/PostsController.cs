@@ -16,28 +16,26 @@ namespace Blogg.Controllers
 
         private readonly PostsContext _context;
 
-        public ActionResult GetPost(string id)
-        {
-            var post = new PostModel();
-            post = (from b in _context.Post
-                    where b.PostId == int.Parse(id)
-                    select b).First();
-            return View(post);
-        }
+        public ActionResult GetPost(string id) => View(_context.Post.Where(x => x.PostId == int.Parse(id)).First());
 
-        public ActionResult GetPosts()
-        {
-            var posts = new List<PostModel>();
-            posts = _context.Post.ToList();
-            posts.Select(c => c.Content);
-            return View(posts);
+        public ActionResult GetPosts() => View(_context.Post.ToList().OrderBy(x => x.PostId));
 
-        }
+        [HttpGet]
+        public ActionResult Create() => View();
 
-        public void Create([FromBody] PostModel model)
+        [HttpPost]
+        public ActionResult Create(string title, string content)
         {
-            _context.Post.Add(model);
-            _context.SaveChanges();
+  
+            //var context = new PostModel
+            //{
+            //    Title = title,
+            //    Content = content,
+            //    Date = DateTime.Now
+            //};
+            //_context.Post.Add(context);
+            //_context.SaveChanges();
+            return RedirectToAction(nameof(GetPosts));
         }
     }
 }
